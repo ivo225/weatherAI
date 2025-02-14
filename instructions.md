@@ -165,3 +165,34 @@ The UI should display an AI-generated text summary that describes trends in weat
 Example AI-generated text shown in the app:
 “Expect sunny skies for most of the week, but a cold front will bring rain and lower temperatures on Thursday and Friday. Winds will be moderate, with a slight increase in humidity by midweek.”
 
+Phase 3: AI VOICE NARRATION
+
+# **AI-Powered Weather Forecast with Voice Narration**
+
+## **Objective**
+Enhance the **AI-generated weather forecast** by adding **Text-to-Speech (TTS)** functionality. This allows users to listen to the AI-generated summary, improving accessibility and user engagement.
+
+---
+
+## **1. Implementation Approach**
+- **Step 1:** Retrieve the **AI-generated text forecast** from DeepSeek AI.
+- **Step 2:** Use a **TTS engine** (Google Cloud TTS, AWS Polly, ElevenLabs, or Web Speech API) to convert the text into speech.
+- **Step 3:** Provide a **"Play Forecast"** button in the UI.
+- **Step 4:** Stream or preload the audio for a smooth experience.
+
+---
+
+## **2. Text-to-Speech (TTS) API Options**
+### **Option 1: Web Speech API (Built-in Browser TTS)**
+- **Pros:** No API key required, lightweight.
+- **Cons:** Limited voice customization, varies by browser.
+
+**Implementation Example (JavaScript)**:
+```javascript
+function speakForecast(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US"; // Set language
+    speech.rate = 1; // Adjust speed
+    speech.pitch = 1; // Adjust pitch
+    window.speechSynthesis.speak(speech);
+}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { RiAiGenerate, RiRefreshLine } from 'react-icons/ri';
 import { WeatherData } from '../types/weather';
 import { generateWeatherInsights } from '../utils/deepseekAi';
+import VoiceControl from './VoiceControl';
 
 interface WeatherInsightsProps {
   weatherData: WeatherData;
@@ -50,15 +51,18 @@ export const WeatherInsights = ({ weatherData }: WeatherInsightsProps) => {
               AI Weather Insights
             </h3>
           </div>
-          <button
-            onClick={fetchInsights}
-            disabled={isLoading}
-            className="p-2 text-primary hover:text-primary/80 disabled:text-gray-400
-                     transition-colors duration-200 ease-in-out"
-            title="Refresh insights"
-          >
-            <RiRefreshLine className={`text-xl ${isLoading ? 'animate-spin' : ''}`} />
-          </button>
+          <div className="flex items-center gap-1">
+            {insights && <VoiceControl text={insights} />}
+            <button
+              onClick={fetchInsights}
+              disabled={isLoading}
+              className="p-2 text-primary hover:text-primary/80 disabled:text-gray-400
+                       transition-colors duration-200 ease-in-out"
+              title="Refresh insights"
+            >
+              <RiRefreshLine className={`text-xl ${isLoading ? 'animate-spin' : ''}`} />
+            </button>
+          </div>
         </div>
 
         {isLoading ? (
